@@ -1,13 +1,26 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const fileinfo = require('./readfile');
+
+const port = 3000;
 
 
-app.use(express.static('./frontend/JS_alps-drive-project-frontend'));
-app.get('/', (req, res) => {
+app.use('/', express.static('./frontend/JS_alps-drive-project-frontend'));
+app.get('/api/drive',async (req, res) => {
+    try {
+        const file =s = await fileinfo.documentContent('test');
+        res.send(file);
+    } catch {
+        res.send('Ne fonctionne pas');
+    }
+})
 
-    res.render('./frontend/JS_alps-drive-project-frontend/index');
-
+function startServeur () {
+app.listen(port, () => {
+    console.log(`Listenning on http://localhost:${port}`);
 });
+}
 
-app.listen(port);
+module.exports = {
+    start: startServeur(),
+};
