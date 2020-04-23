@@ -4,16 +4,14 @@ const fs = require('fs');
 const deleteFile = (fileRoute,fileToDelete) => {
     const pathFileToDelete = `${os.tmpdir()}/${fileRoute}/${fileToDelete}`;
     if(fs.existsSync(pathFileToDelete) && fs.lstatSync(pathFileToDelete).isDirectory()) {
-        console.log(`C'est un dossier`)
         fs.rmdir(pathFileToDelete, (err) => {
             if (err) throw err;
-            console.log(`${pathFileToDelete} à été suprimé`);
+            console.log(`Le dossier ${pathFileToDelete} à été suprimé`);
           });
     } else {
-        console.log(`C'est un fichier`)
         fs.unlink(pathFileToDelete, (err) => {
             if (err) throw err;
-            console.log(`${pathFileToDelete} à été suprimé`);
+            console.log(`Le fichier ${pathFileToDelete} à été suprimé`);
           });
     }
 }

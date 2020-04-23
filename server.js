@@ -23,8 +23,13 @@ app.delete('/api/drive/:name', function (req, res) {
     fileDelete.deleteFile('test', req.params.name);
 });
 
-app.post('/api/drive', (req, res) => {
+app.post('/api/drive', (req, res) => { // création de dossier seule 
     createDirctory.createDirectory('test',req.query.name);
+    console.log("req.query.name", req.query.name)
+});
+
+app.post('/api/drive/:folder', (req, res) => { // création de dossier dans dossier
+    createDirctory.createDirectory(`test/${req.params.folder}`,req.query.name);
     console.log("req.query.name", req.query.name)
 });
 
