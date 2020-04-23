@@ -5,7 +5,10 @@ const deleteFile = (fileRoute,fileToDelete) => {
     const pathFileToDelete = `${os.tmpdir()}/${fileRoute}/${fileToDelete}`;
     if(fs.existsSync(pathFileToDelete) && fs.lstatSync(pathFileToDelete).isDirectory()) {
         console.log(`C'est un dossier`)
-        fs.rmdir()
+        fs.rmdir(pathFileToDelete, (err) => {
+            if (err) throw err;
+            console.log(`${pathFileToDelete} à été suprimé`);
+          });
     } else {
         console.log(`C'est un fichier`)
         fs.unlink(pathFileToDelete, (err) => {

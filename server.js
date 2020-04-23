@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const fileinfo = require('./readfile');
 const fileDelete = require('./deletefile');
+const createDirctory = require('./createDirectoryAlps')
 
 const port = 3000;
 
@@ -14,12 +15,17 @@ app.get('/api/drive',async (req, res) => {
     } catch {
         res.send('Ne fonctionne pas');
     }
-})
+});
 
 app.delete('/api/drive/:name', function (req, res) {
     console.log(req.params.name)
     
     fileDelete.deleteFile('test', req.params.name);
+});
+
+app.post('/api/drive', (req, res) => {
+    createDirctory.createDirectory('test',req.query.name);
+    console.log("req.query.name", req.query.name)
 });
 
 function startServeur () {

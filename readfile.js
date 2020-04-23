@@ -3,14 +3,9 @@ const os = require('os');
 
 const documentContent = async (routeToCheck) => {
     let pathFile = `${os.tmpdir}/${routeToCheck}`;
-    const statinfo = fs.stat(pathFile,function(err, stats) {
-        console.log(stats.isDirectory());
-        console.log(stats);
-      });
 
     const fileInfo = await fs.promises.readdir(pathFile, {withFileTypes : true});
     
-    console.log("documentContent -> fileInfo", fileInfo)
     return fileInfo.map(file => transformToAlpesItem(file));
 };
 
