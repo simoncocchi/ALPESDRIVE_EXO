@@ -2,7 +2,7 @@ const os = require('os');
 const fs = require('fs');
 
 function fileUploadToRoot (data, tmpFile) {
-  console.log(data);
+  console.log('2');
   whereToCopieUplaod = `/${tmpFile}/${data['file']['filename']}`;
 
   fileSource = data['file']['file'];

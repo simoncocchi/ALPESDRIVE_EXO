@@ -2,7 +2,9 @@ const os = require('os');
 const fs = require('fs');
 
 const deleteFile = (fileRoute,fileToDelete) => {
+    console.log(2);
     const pathFileToDelete = `${os.tmpdir()}/${fileRoute}/${fileToDelete}`;
+
     if(fs.existsSync(pathFileToDelete) && fs.lstatSync(pathFileToDelete).isDirectory()) {
         fs.rmdir(pathFileToDelete, (err) => {
             if (err) throw err;
