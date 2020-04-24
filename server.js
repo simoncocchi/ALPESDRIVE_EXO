@@ -3,6 +3,13 @@ const app = express();
 const fileinfo = require('./readfile');
 const fileDelete = require('./deletefile');
 const createDirctory = require('./createDirectoryAlps')
+const bb = require('express-busboy');
+const fileUpload = require('./uploadFileApls');
+
+bb.extend(app, {
+    upload: true,
+    path: '/var/folders/gm/hbw42jzx4v38b9f1n2wvw7br0000gn/T/upload',
+});
 
 const port = 3000;
 
@@ -52,6 +59,17 @@ app.post('/api/drive/:folder', (req, res) => { // création de dossier dans doss
     res.send('creation ok');
 });
 
+app.put('/api/drive', (req, res) => { // upload de fichier sur le root
+    const datatest = req.files;
+    fileUpload.fileUploadToRoot(datatest, `test`);
+    res.send(`upload ok root`);
+})
+
+app.put('/api/drive/:folder', (req, res) => { // upload de fichier sur le root
+    const datatest = req.files;
+    fileUpload.fileUploadToRoot(datatest, `test/${req.params.folder}`);
+    res.send(`upload folder ok`);
+})
 function startServeur () {
 app.listen(port, () => {
     console.log(`Listenning on http://localhost:${port}`);
