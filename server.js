@@ -52,9 +52,9 @@ app.delete('/api/drive/:folder/:name', function (req, res) { // suppresion d'un 
 });
 
 app.post('/api/drive', (req, res) => { // création de dossier seule 
-    createDirctory.createDirectory('test', req.query.name);
+    const jsoncreate = createDirctory.createDirectory('test', req.query.name);
     console.log("req.query.name", req.query.name)
-    res.send('creation ok');
+    res.send(jsoncreate);
 });
 
 app.post('/api/drive/:folder', (req, res) => { // création de dossier dans dossier

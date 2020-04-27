@@ -9,6 +9,8 @@ function createDirectory (whereToCreate, nameDirToCreate) {
         if (err) throw err;
         console.log(`Le dossier ${nameDirToCreate} été créer dans le fichier temporaire`);
     });
+    const testjson = {create : 'ok', directoryName : nameDirToCreate};
+    return testjson;
 }
 
 module.exports.createDirectory = createDirectory;
